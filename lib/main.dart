@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shop/models/cart.dart';
+import 'package:shop/models/order_list.dart';
 
 import 'package:shop/models/product_list.dart';
+import 'package:shop/pages/cart_page.dart';
 import 'package:shop/pages/counter_page.dart';
+import 'package:shop/pages/orders_page.dart';
 import 'package:shop/pages/product_detail_page.dart';
 import 'package:shop/pages/products_overview_page.dart';
 import 'package:shop/providers/counter.dart';
@@ -24,25 +27,29 @@ class MyApp extends StatelessWidget {
       child: MultiProvider(
         providers: [
           ChangeNotifierProvider(
-            create: (_) => ProductList(),            
-            ),
-          ChangeNotifierProvider(
-            create: (_) => Cart(),            
-            ),
-        ],        
-        child: MaterialApp(
-          debugShowCheckedModeBanner: false,
-          title: 'Flutter Demo',
-          theme: ThemeData(
-            primarySwatch: Colors.purple,
-            fontFamily: 'Lato',
-            hintColor: Colors.deepOrange,
+            create: (_) => ProductList(),
           ),
-          home: ProductsOverviewPage(),
-          routes:{
-            AppRoutes.PRODUCT_DETAIL: (ctx) => ProductDetailPage(),
-          }
-        ),
+          ChangeNotifierProvider(
+            create: (_) => Cart(),
+          ),
+          ChangeNotifierProvider(
+            create: (_) => OrderList(),
+          ),
+        ],
+        child: MaterialApp(
+            debugShowCheckedModeBanner: false,
+            title: 'Flutter Demo',
+            theme: ThemeData(
+              primarySwatch: Colors.purple,
+              fontFamily: 'Lato',
+              hintColor: Colors.deepOrange,
+            ),
+            routes: {
+              AppRoutes.HOME: (ctx) => ProductsOverviewPage(),
+              AppRoutes.PRODUCT_DETAIL: (ctx) => ProductDetailPage(),
+              AppRoutes.CART: (ctx) => CartPage(),
+              AppRoutes.ORDERS: (ctx) => OrdersPage(),
+            }),
       ),
     );
   }
