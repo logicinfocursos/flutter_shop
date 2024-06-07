@@ -5,20 +5,20 @@ import 'package:shop/components/order.dart';
 import 'package:shop/models/order_list.dart';
 
 class OrdersPage extends StatelessWidget {
-  const OrdersPage({super.key});
+  const OrdersPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-
     final OrderList orders = Provider.of(context);
+
     return Scaffold(
       appBar: AppBar(
-        title: Text('Meus Pedidos'),
+        title: const Text('Meus Pedidos'),
       ),
-      drawer: AppDrawer(),
+      drawer: const AppDrawer(),
       body: ListView.builder(
         itemCount: orders.itemsCount,
-        itemBuilder: (ctx, i) => OrderWidget(order: orders.items[i])
+        itemBuilder: (ctx, i) => OrderWidget(order: orders.items[i]),
       ),
     );
   }

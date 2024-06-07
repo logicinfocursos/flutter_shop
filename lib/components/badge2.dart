@@ -10,33 +10,37 @@ class Badge2 extends StatelessWidget {
     required this.child,
     required this.value,
     this.color,
-  }): super (key: key);
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Stack(
       alignment: Alignment.center,
-      children:[
+      children: [
         child,
         Positioned(
-          right: 4,
-          top: 2,
+          right: 8,
+          top: 8,
           child: Container(
-            padding: const EdgeInsets.all(2.0),
+            padding: const EdgeInsets.all(2),
             decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(10),
-            color: Colors.redAccent,
+              borderRadius: BorderRadius.circular(10),
+              color: color ?? Theme.of(context).colorScheme.secondary,
             ),
-            constraints: BoxConstraints(
+            constraints: const BoxConstraints(
               minHeight: 16,
               minWidth: 16,
             ),
             child: Text(
-              value, 
+              value,
               textAlign: TextAlign.center,
-              style:TextStyle(fontSize:10, color: Colors.white)),
-          ))
-    ]
+              style: const TextStyle(
+                fontSize: 10,
+              ),
+            ),
+          ),
+        ),
+      ],
     );
   }
 }
